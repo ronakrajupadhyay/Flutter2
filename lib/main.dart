@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'add_recipe_page.dart';
+import 'home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,33 +11,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: 'Recipe Book',
+
+      theme: ThemeData(
+        primaryColor: Colors.green,
+        scaffoldBackgroundColor: Colors.white,
+
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green,
+          foregroundColor: Colors.white,
+        ),
+
+        floatingActionButtonTheme: const FloatingActionButtonThemeData(
+          backgroundColor: Colors.orange,
+        ),
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme.copyWith(
+              bodyMedium: const TextStyle(
+                fontSize: 16,
+          )
+        ),
+
+          ),
+        ),
+
       home: HomePage(),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Recipes App")),
-      body: Center(
-        child: ElevatedButton(
-          child: const Text("Add Recipe"),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const AddRecipePage(),
-              ),
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
